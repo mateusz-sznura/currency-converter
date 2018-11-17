@@ -9,16 +9,25 @@ import {
   Label,
 } from 'reactstrap';
 
-const DEFAULT_API_KEY = '6c26db6dd08d98b1d99b2f77c7a88c90';
+const API_KEY_INPUT_ID = 'api-key-input-id';
+const API_KEY_PROP_NAME = 'apiKey';
+
+const id2prop = {
+  [API_KEY_INPUT_ID]: API_KEY_PROP_NAME,
+}
 
 class AppConfig extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       collapse: false,
     }
+
     this.toggleCollapse = this.toggleCollapse.bind(this);
+    this.setAppConfig = this.setAppConfig.bind(this);
+    this.cancelSubmit = this.cancelSubmit.bind(this);
   }
 
   toggleCollapse() {
@@ -27,16 +36,31 @@ class AppConfig extends Component {
     }));
   }
 
+  setAppConfig(event) {
+    const nextAppConfig = {
+      [id2prop[event.target.id]]: event.target.value,
+    };
+    this.props.setAppConfig({
+      ...this.props.appConfig,
+      ...nextAppConfig,
+    });
+  }
+
+  cancelSubmit(event) {
+    event.preventDefault();
+  }
+
   render() {
+    const { appConfig } = this.props;
     return (
-      <div className="appConfig">
+      <div className="app-config">
         <h1>App Config</h1>
         <Button color="primary" onClick={this.toggleCollapse}>Show</Button>
         <Collapse isOpen={this.state.collapse}>
-          <Form>
+          <Form onSubmit={this.cancelSubmit}>
             <FormGroup>
-              <Label for="api-key-input">API Key</Label>
-              <Input type="string" id="api-key-input" defaultValue={DEFAULT_API_KEY} />
+              <Label for={API_KEY_INPUT_ID}>API Key</Label>
+              <Input type="string" id={API_KEY_INPUT_ID} value={appConfig[API_KEY_PROP_NAME]} onChange={this.setAppConfig} />
               <FormText color="muted">
                 This app uses fixer.io api and thus requires fixer.io API key.
                 You can use default, but if the monthly request limit is exceeded,
