@@ -20,10 +20,10 @@ class App extends Component {
           apiKey: DEFAULT_API_KEY,
         },
         appState: {
-          amount: 1,
-          baseCurrency: 'EUR',
+          amount: 200,
+          baseCurrency: 'SEK',
           targetCurrencies: [
-            'EUR',
+            'USD',
           ],
           dates: [
             today(),
@@ -31,6 +31,8 @@ class App extends Component {
           exchangeRates: {
             [today()]: {
               'EUR': 1.0000,
+              'USD': 1.1400, // 1 EUR = 1.1400 USD
+              'SEK': 10.2700, // 1 EUR = 10.2700 SEK
             }
           }
         },
