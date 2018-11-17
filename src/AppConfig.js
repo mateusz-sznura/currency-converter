@@ -67,6 +67,7 @@ class AppConfig extends Component {
                 you can create your own free fixer.io account and provide own API key.
               </FormText>
             </FormGroup>
+            <Button color="primary" onClick={this.props.restoreDefaultAppConfig}>Restore default</Button>
           </Form>
         </Collapse>
       </div>
