@@ -4,6 +4,7 @@ import AppConfig from './AppConfig';
 import CurrencyConverter from './CurrencyConverter';
 import { DEFAULT_API_KEY } from './constants';
 import { today } from './dateUtils';
+import { getExchangeRates, getCurrencyCodes } from './exchangeRatesProvider';
 
 class App extends Component {
 
@@ -43,6 +44,8 @@ class App extends Component {
     this.setAppConfig = this.setAppConfig.bind(this);
     this.restoreDefaultAppConfig = this.restoreDefaultAppConfig.bind(this);
     this.setAppState = this.setAppState.bind(this);
+    this.getExchangeRates = this.getExchangeRates.bind(this);
+    this.getCurrencyCodes = this.getCurrencyCodes.bind(this);
   }
 
   componentDidUpdate() {
@@ -69,6 +72,14 @@ class App extends Component {
     });
   }
 
+  getExchangeRates({ targetCurrencies, dates }) {
+    return getExchangeRates({ apiKey: this.state.appConfig.apiKey, targetCurrencies, dates });
+  }
+
+  getCurrencyCodes() {
+    return getCurrencyCodes({ apiKey: this.state.appConfig.apiKey });
+  }
+
   render() {
     const { appConfig, appState } = this.state;
     return (
@@ -82,6 +93,8 @@ class App extends Component {
           appConfig={appConfig}
           appState={appState}
           setAppState={this.setAppState}
+          getExchangeRates={this.getExchangeRates}
+          getCurrencyCodes={this.getCurrencyCodes}
         />
       </div>
     );
