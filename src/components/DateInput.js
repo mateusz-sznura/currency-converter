@@ -12,9 +12,12 @@ class DateInput extends Component {
   }
 
   render() {
-    const { date } = this.props;
+    const { date, removeDate } = this.props;
     return (
       <div className="date-input">
+        <div className="remove-date" onClick={removeDate}>
+          {'-'}
+        </div>
         <input type="date" value={date} onChange={this.setDate} />
       </div>
     );

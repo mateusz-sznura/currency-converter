@@ -17,9 +17,12 @@ class CurrencyInput extends Component {
   }
 
   render() {
-    const { availableCurrencies, currency } = this.props;
+    const { availableCurrencies, currency, removeCurrency } = this.props;
     return (
       <div className="currency-input">
+        <div className="remove-currency" onClick={removeCurrency}>
+          {'-'}
+        </div>
         <Input type="select" value={currency} onChange={this.setCurrency} >
           <option>{''}</option>
           {availableCurrencies.map(currency =>

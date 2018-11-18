@@ -31,6 +31,14 @@ class CurrencyValueMatrix extends Component {
     });
   }
 
+  removeCurrency(idx) {
+    const { appState, setAppState } = this.props;
+    setAppState({
+      ...appState,
+      targetCurrencies: [ ...appState.targetCurrencies.slice(0, idx), ...appState.targetCurrencies.slice(idx + 1)],
+    });
+  }
+
   changeDate(idx, newDate) {
     const { appState, setAppState } = this.props;
     setAppState({
@@ -48,6 +56,14 @@ class CurrencyValueMatrix extends Component {
     });
   }
 
+  removeDate(idx) {
+    const { appState, setAppState } = this.props;
+    setAppState({
+      ...appState,
+      dates: [ ...appState.dates.slice(0, idx), ...appState.dates.slice(idx + 1)],
+    });
+  }
+
   render() {
     const { appState, availableCurrencies } = this.props;
     return (
@@ -57,7 +73,11 @@ class CurrencyValueMatrix extends Component {
             <th></th>
             {appState.dates.map((date, idx) =>
               <th key={idx}>
-                <DateInput date={date} setDate={date => this.changeDate(idx, date)} />
+                <DateInput
+                  date={date}
+                  setDate={date => this.changeDate(idx, date)}
+                  removeDate={() => this.removeDate(idx)}
+                />
               </th>
             )}
             <th>
@@ -73,6 +93,7 @@ class CurrencyValueMatrix extends Component {
                     availableCurrencies={availableCurrencies}
                     currency={targetCurrency}
                     setCurrency={currency => this.changeCurrency(idx, currency)}
+                    removeCurrency={() => this.removeCurrency(idx)}
                 />
               </th>
               {appState.dates.map((date, idx) =>
