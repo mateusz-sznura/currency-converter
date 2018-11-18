@@ -42,6 +42,7 @@ class CurrencyConverter extends Component {
         <CurrencyValueMatrix
           appState={appState}
           setAppState={setAppState}  
+          availableCurrencies={availableCurrencies}
         />
       </div>
     );

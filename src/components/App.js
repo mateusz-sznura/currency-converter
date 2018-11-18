@@ -39,7 +39,8 @@ class App extends Component {
               'USD': 1.1400, // 1 EUR = 1.1400 USD
               'SEK': 10.2700, // 1 EUR = 10.2700 SEK
             }
-          }
+          },
+          isLoading: true,
         },
         availableCurrencies: [],
       }
@@ -50,18 +51,47 @@ class App extends Component {
     this.restoreDefaultAppConfig = this.restoreDefaultAppConfig.bind(this);
     this.setAppState = this.setAppState.bind(this);
     this.getExchangeRates = this.getExchangeRates.bind(this);
-  }
+ }
 
   componentDidMount() {
-    getCurrencyCodes({ apiKey: this.state.appConfig.apiKey }).then(availableCurrencies => {
-      this.setState({
-        availableCurrencies,
+    const { apiKey } = this.state.appConfig;
+    if (this.state.availableCurrencies.length === 0) {
+      getCurrencyCodes({ apiKey }).then(availableCurrencies => {
+        this.setState({
+          availableCurrencies,
+        });
       });
-    });
+    }
+
+    if (this.state.appState.isLoading) {
+      this.getExchangeRates();
+    }
   }
 
   componentDidUpdate() {
     localStorage.setItem('state', JSON.stringify(this.state));
+
+    if (this.state.appState.isLoading) {
+      this.getExchangeRates();
+    }
+  }
+
+  getExchangeRates() {
+    const { apiKey } = this.state.appConfig;
+    const { targetCurrencies, baseCurrency } = this.state.appState;
+    const currencies = targetCurrencies.includes(baseCurrency)
+      ? targetCurrencies.filter(currency => currency !== '')
+      : [...targetCurrencies, baseCurrency].filter(currency => currency !== '');
+    const dates = this.state.appState.dates.filter(date => date !== '');
+    getExchangeRates({ apiKey, dates, targetCurrencies: currencies }).then(exchangeRates => {
+      this.setState(state => ({
+        appState: {
+          ...state.appState,
+          exchangeRates,
+          isLoading: false,
+        }
+      }));
+    });
   }
 
   setAppConfig(appConfig) {
@@ -84,10 +114,6 @@ class App extends Component {
     });
   }
 
-  getExchangeRates({ targetCurrencies, dates }) {
-    return getExchangeRates({ apiKey: this.state.appConfig.apiKey, targetCurrencies, dates });
-  }
-
   render() {
     const { appConfig, appState } = this.state;
     return (
@@ -101,7 +127,6 @@ class App extends Component {
           appConfig={appConfig}
           appState={appState}
           setAppState={this.setAppState}
-          getExchangeRates={this.getExchangeRates}
           availableCurrencies={this.state.availableCurrencies}
         />
       </div>

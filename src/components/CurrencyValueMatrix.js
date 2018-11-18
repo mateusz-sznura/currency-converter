@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 import CurrencyValue from './CurrencyValue';
+import CurrencyInput from './CurrencyInput';
 
 class CurrencyValueMatrix extends Component {
-  render() {
+
+  changeCurrency(idx, newCurrency) {
     const { appState, setAppState } = this.props;
+    setAppState({
+      ...appState,
+      targetCurrencies: [ ...appState.targetCurrencies.slice(0, idx), newCurrency, ...appState.targetCurrencies.slice(idx + 1)],
+    });
+  }
+
+  addCurrency() {
+
+  }
+
+  render() {
+    const { appState, availableCurrencies } = this.props;
     return (
       <Table>
         <thead>
@@ -17,9 +31,15 @@ class CurrencyValueMatrix extends Component {
           </tr>
         </thead>
         <tbody>
-          {appState.targetCurrencies.map(targetCurrency =>
-            <tr key={targetCurrency}>
-              <th>{targetCurrency}</th>
+          {appState.targetCurrencies.map((targetCurrency, idx) =>
+            <tr key={idx}>
+              <th>
+                <CurrencyInput
+                    availableCurrencies={availableCurrencies}
+                    currency={targetCurrency}
+                    setCurrency={currency => this.changeCurrency(idx, currency)}
+                />
+              </th>
               {appState.dates.map(date =>
                 <td key={date}>
                   <CurrencyValue 
