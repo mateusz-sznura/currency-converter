@@ -1,5 +1,6 @@
 .currency-value-matrix {
     margin: 0;
+    width: unset;
 }
 
 .currency-value-matrix td {
@@ -10,7 +11,7 @@
     width: 180px;
 }
 
-.currency-value-matrix td.td-empty {
+.currency-value-matrix td.td-instruction {
     background-color: #efefef;
     border-bottom: 1px solid #cccccc; 
 }
@@ -26,4 +27,15 @@
 
 .currency-value-matrix td.td-add-input {
     border: 0;
+}
+
+.currency-value-matrix td.td-last {
+    width: 60px;
+}
+
+.currency-value-matrix .instruction {
+    font-size: 12px;
+    color: #6c757d;
+    text-align: center;
+    padding-top: 2px;
 }

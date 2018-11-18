@@ -71,7 +71,11 @@ class CurrencyValueMatrix extends Component {
       <Table className="currency-value-matrix" responsive={true}>
         <tbody>
           <tr>
-            <td className="td-empty"></td>
+            <td className="td-instruction">
+              <div className="instruction">
+                Select target currencies and dates
+              </div>
+            </td>
             {appState.dates.map((date, idx) =>
               <td className="td-input" key={idx}>
                 <DateInput
@@ -81,7 +85,7 @@ class CurrencyValueMatrix extends Component {
                 />
               </td>
             )}
-            <td className="td-add-input" rowSpan={appState.targetCurrencies.length + 2}>
+            <td className="td-add-input td-last" rowSpan={appState.targetCurrencies.length + 2}>
               <AddNewDate addNewDate={this.addDate} />
             </td>
           </tr>
