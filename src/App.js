@@ -25,9 +25,12 @@ class App extends Component {
           baseCurrency: 'SEK',
           targetCurrencies: [
             'USD',
+            '',
           ],
           dates: [
+            '2014-02-24',
             today(),
+            '',
           ],
           exchangeRates: {
             [today()]: {

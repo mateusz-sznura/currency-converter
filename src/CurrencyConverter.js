@@ -42,6 +42,7 @@ class CurrencyValueMatrix extends Component {
                     amount={appState.amount}
                     baseCurrency={appState.baseCurrency}
                     targetCurrency={targetCurrency}
+                    date={date}
                     exchangeRates={appState.exchangeRates[date]}
                   />
                 </td> 
@@ -65,9 +66,13 @@ class CurrencyValue extends Component {
   }
 
   render() {
+    const { baseCurrency, targetCurrency, date, exchangeRates } = this.props;
     return (
       <div className="currency-value">
-        {this.calculateValue()}
+        {!targetCurrency || !date || !exchangeRates || !exchangeRates[targetCurrency] || !exchangeRates[baseCurrency]
+          ? <span>?</span>
+          : this.calculateValue()
+        }
       </div>
     );
   }
