@@ -41,6 +41,7 @@ class App extends Component {
             }
           }
         },
+        availableCurrencies: [],
       }
       localStorage.setItem('state', JSON.stringify(this.state));
     }
@@ -49,7 +50,19 @@ class App extends Component {
     this.restoreDefaultAppConfig = this.restoreDefaultAppConfig.bind(this);
     this.setAppState = this.setAppState.bind(this);
     this.getExchangeRates = this.getExchangeRates.bind(this);
-    this.getCurrencyCodes = this.getCurrencyCodes.bind(this);
+    // this.getCurrencyCodes = this.getCurrencyCodes.bind(this);
+  }
+
+  componentDidMount() {
+    getCurrencyCodes({ apiKey: this.state.appConfig.apiKey }).then(availableCurrencies => {
+      // this.setState(state => ({
+      //   ...state.appState,
+      //   availableCurrencies,
+      // }));
+      this.setState({
+        availableCurrencies,
+      });
+    });
   }
 
   componentDidUpdate() {
@@ -80,10 +93,6 @@ class App extends Component {
     return getExchangeRates({ apiKey: this.state.appConfig.apiKey, targetCurrencies, dates });
   }
 
-  getCurrencyCodes() {
-    return getCurrencyCodes({ apiKey: this.state.appConfig.apiKey });
-  }
-
   render() {
     const { appConfig, appState } = this.state;
     return (
@@ -98,7 +107,7 @@ class App extends Component {
           appState={appState}
           setAppState={this.setAppState}
           getExchangeRates={this.getExchangeRates}
-          getCurrencyCodes={this.getCurrencyCodes}
+          availableCurrencies={this.state.availableCurrencies}
         />
       </div>
     );
