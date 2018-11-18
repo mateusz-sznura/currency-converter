@@ -12,8 +12,7 @@ class App extends Component {
     super(props);
 
     const persistedState = localStorage.getItem('state');
-    // if (persistedState) {
-    if (false) {
+    if (persistedState) {
       this.state = JSON.parse(persistedState);
     }
     else {
@@ -22,23 +21,15 @@ class App extends Component {
           apiKey: DEFAULT_API_KEY,
         },
         appState: {
-          amount: 200,
-          baseCurrency: 'SEK',
+          amount: 1,
+          baseCurrency: 'EUR',
           targetCurrencies: [
             'USD',
-            '',
           ],
           dates: [
-            '2014-02-24',
             today(),
-            '',
           ],
           exchangeRates: {
-            [today()]: {
-              'EUR': 1.0000,
-              'USD': 1.1400, // 1 EUR = 1.1400 USD
-              'SEK': 10.2700, // 1 EUR = 10.2700 SEK
-            }
           },
           isLoading: true,
         },
