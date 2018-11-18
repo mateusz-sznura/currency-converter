@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Table
-} from 'reactstrap';
+import CurrencyValueMatrix from './CurrencyValueMatrix';
 
 class CurrencyConverter extends Component {
   render() {
@@ -13,66 +11,6 @@ class CurrencyConverter extends Component {
           appState={appState}
           setAppState={setAppState}  
         />
-      </div>
-    );
-  }
-}
-
-class CurrencyValueMatrix extends Component {
-  render() {
-    const { appState, setAppState } = this.props;
-    return (
-      <Table>
-        <thead>
-          <tr>
-            <th></th>
-            {appState.dates.map(date =>
-              <th key={date}>{date}</th>
-            )}
-            <th>+</th>
-          </tr>
-        </thead>
-        <tbody>
-          {appState.targetCurrencies.map(targetCurrency =>
-            <tr key={targetCurrency}>
-              <th>{targetCurrency}</th>
-              {appState.dates.map(date =>
-                <td key={date}>
-                  <CurrencyValue 
-                    amount={appState.amount}
-                    baseCurrency={appState.baseCurrency}
-                    targetCurrency={targetCurrency}
-                    date={date}
-                    exchangeRates={appState.exchangeRates[date]}
-                  />
-                </td> 
-              )}  
-            </tr> 
-          )}
-          <tr>
-            <td colSpan="1">+</td>
-          </tr>
-        </tbody>
-      </Table>
-    );
-  }
-}
-
-class CurrencyValue extends Component {
-
-  calculateValue() {
-    const { amount, baseCurrency, targetCurrency, exchangeRates } = this.props;
-    return amount * (exchangeRates[targetCurrency] / exchangeRates[baseCurrency]);
-  }
-
-  render() {
-    const { baseCurrency, targetCurrency, date, exchangeRates } = this.props;
-    return (
-      <div className="currency-value">
-        {!targetCurrency || !date || !exchangeRates || !exchangeRates[targetCurrency] || !exchangeRates[baseCurrency]
-          ? <span>?</span>
-          : this.calculateValue()
-        }
       </div>
     );
   }
