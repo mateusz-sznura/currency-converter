@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import AppConfig from './AppConfig';
 import CurrencyConverter from './CurrencyConverter';
-import { DEFAULT_API_KEY } from './constants';
-import { today } from './dateUtils';
-import { getExchangeRates, getCurrencyCodes } from './exchangeRatesProvider';
+import { DEFAULT_API_KEY } from '../config';
+import { today } from '../utils/dateUtils';
+import { getExchangeRates, getCurrencyCodes } from '../api/exchangeRatesProvider';
 
 class App extends Component {
 
@@ -12,7 +12,8 @@ class App extends Component {
     super(props);
 
     const persistedState = localStorage.getItem('state');
-    if (persistedState) {
+    // if (persistedState) {
+    if (false) {
       this.state = JSON.parse(persistedState);
     }
     else {

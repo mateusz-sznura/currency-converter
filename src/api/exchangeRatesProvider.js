@@ -1,5 +1,5 @@
 import fromPairs from 'lodash/fromPairs';
-import { today } from './dateUtils';
+import { today } from '../utils/dateUtils';
 
 const BASE_URL = 'http://data.fixer.io/api';
 
