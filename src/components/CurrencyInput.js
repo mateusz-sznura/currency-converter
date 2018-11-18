@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {
+  Button,
   Input,
 } from 'reactstrap';
+import './CurrencyInput.css';
 
 class CurrencyInput extends Component {
 
@@ -19,10 +21,10 @@ class CurrencyInput extends Component {
   render() {
     const { availableCurrencies, currency, removeCurrency } = this.props;
     return (
-      <div className="currency-input">
-        <div className="remove-currency" onClick={removeCurrency}>
+      <div className="currency-input d-flex">
+        <Button className="remove-currency" onClick={removeCurrency}>
           {'-'}
-        </div>
+        </Button>
         <Input type="select" value={currency} onChange={this.setCurrency} >
           <option>{''}</option>
           {availableCurrencies.map(currency =>

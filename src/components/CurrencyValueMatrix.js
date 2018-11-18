@@ -5,6 +5,7 @@ import CurrencyInput from './CurrencyInput';
 import AddNewCurrency from './AddNewCurrency';
 import DateInput from './DateInput';
 import AddNewDate from './AddNewDate';
+import './CurrencyValueMatrix.css';
 
 class CurrencyValueMatrix extends Component {
 
@@ -67,37 +68,35 @@ class CurrencyValueMatrix extends Component {
   render() {
     const { appState, availableCurrencies } = this.props;
     return (
-      <Table>
-        <thead>
+      <Table className="currency-value-matrix" responsive={true}>
+        <tbody>
           <tr>
-            <th></th>
+            <td className="td-empty"></td>
             {appState.dates.map((date, idx) =>
-              <th key={idx}>
+              <td className="td-input" key={idx}>
                 <DateInput
                   date={date}
                   setDate={date => this.changeDate(idx, date)}
                   removeDate={() => this.removeDate(idx)}
                 />
-              </th>
+              </td>
             )}
-            <th>
+            <td className="td-add-input" rowSpan={appState.targetCurrencies.length + 2}>
               <AddNewDate addNewDate={this.addDate} />
-            </th>
+            </td>
           </tr>
-        </thead>
-        <tbody>
           {appState.targetCurrencies.map((targetCurrency, idx) =>
             <tr key={idx}>
-              <th>
+              <td className="td-input">
                 <CurrencyInput
                     availableCurrencies={availableCurrencies}
                     currency={targetCurrency}
                     setCurrency={currency => this.changeCurrency(idx, currency)}
                     removeCurrency={() => this.removeCurrency(idx)}
                 />
-              </th>
+              </td>
               {appState.dates.map((date, idx) =>
-                <td key={idx}>
+                <td className="td-value" key={idx}>
                   <CurrencyValue 
                     amount={appState.amount}
                     baseCurrency={appState.baseCurrency}
@@ -110,7 +109,7 @@ class CurrencyValueMatrix extends Component {
             </tr> 
           )}
           <tr>
-            <td colSpan="1">
+            <td className="td-add-input" colSpan={appState.dates.length + 1}>
               <AddNewCurrency addNewCurrency={this.addCurrency} />
             </td>
           </tr>

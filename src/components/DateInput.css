@@ -1,0 +1,12 @@
+.date-input button {
+    width: 38px;
+    margin-right: 12px;
+}
+
+.date-input input[type="date"] {
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    color: #444440; 
+    padding-left: 12px;
+    width: 200px;
+}

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Button } from 'reactstrap';
+import './DateInput.css';
 
 class DateInput extends Component {
 
@@ -14,10 +16,10 @@ class DateInput extends Component {
   render() {
     const { date, removeDate } = this.props;
     return (
-      <div className="date-input">
-        <div className="remove-date" onClick={removeDate}>
+      <div className="date-input d-flex">
+        <Button className="remove-date" onClick={removeDate}>
           {'-'}
-        </div>
+        </Button>
         <input type="date" value={date} onChange={this.setDate} />
       </div>
     );

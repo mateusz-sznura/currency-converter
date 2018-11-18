@@ -1,0 +1,29 @@
+.currency-value-matrix {
+    margin: 0;
+}
+
+.currency-value-matrix td {
+    border: 0;
+}
+
+.currency-value-matrix td:first-child {
+    width: 180px;
+}
+
+.currency-value-matrix td.td-empty {
+    background-color: #efefef;
+    border-bottom: 1px solid #cccccc; 
+}
+
+.currency-value-matrix td.td-input {
+    background-color: #efefef;
+    border-bottom: 1px solid #cccccc; 
+}
+
+.currency-value-matrix td.td-value {
+    border-bottom: 1px solid #cccccc; 
+}
+
+.currency-value-matrix td.td-add-input {
+    border: 0;
+}

@@ -31,7 +31,6 @@ class CurrencyConverter extends Component {
     const { appState, setAppState, availableCurrencies } = this.props;
     return (
       <div className="currency-converter">
-        <h1>Currency Converter</h1>
         <BaseCurrencyInput
           amount={appState.amount}
           baseCurrency={appState.baseCurrency}

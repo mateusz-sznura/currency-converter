@@ -1,0 +1,15 @@
+.base-currency-input {
+    margin-bottom: 20px;
+}
+
+.base-currency-input > div {
+    margin-right: 20px;
+}
+
+.base-currency-input input {
+    width: 400px;
+}
+
+.base-currency-input select {
+    width: 100px;
+}

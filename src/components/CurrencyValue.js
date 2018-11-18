@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Decimal } from 'decimal.js';
 import {PRECISION } from '../config';
+import './CurrencyValue.css';
 
 class CurrencyValue extends Component {
 

@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Button } from 'reactstrap';
+import './AddNewCurrency.css'
 
-class AddNewCurrency extends Component {
-
-  render() {
-    return (
-      <div className="add-new-currency" onClick={this.props.addNewCurrency}>
-        {'+'}
-      </div>
-    );
-  }
-
-}
+const AddNewCurrency = ({ addNewCurrency }) => (
+  <Button className="add-new-currency" onClick={addNewCurrency}>
+    {'+'}
+  </Button>
+);
 
 export default AddNewCurrency;

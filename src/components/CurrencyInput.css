@@ -1,0 +1,8 @@
+.currency-input select {
+    width: 100px;
+}
+
+.currency-input button {
+    width: 38px;
+    margin-right: 12px;
+}

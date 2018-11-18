@@ -1,0 +1,47 @@
+.app {
+    margin: 0 auto;
+    color: #444440; 
+}
+
+.app-header {
+    background-color: #aabbcc;
+    font-family: 'Liberation Serif';
+    height: 140px;
+    width: 100%;
+}
+
+.app-body {
+    margin: 20px;
+}
+
+.app-header h1 {
+    border-bottom: 1px solid #444440; 
+    font-size: 40px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin: auto;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 800px;
+}
+
+.app-header h2 {
+    font-size: 34px;
+    margin: auto;
+    text-align: center;
+    width: 800px;
+}
+
+.app-footer {
+    background-color: #efefef;
+    font-family: 'Liberation Serif';
+    font-size: 18px;
+    height: 60px;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+}

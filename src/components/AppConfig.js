@@ -8,6 +8,7 @@ import {
   Input,
   Label,
 } from 'reactstrap';
+import './AppConfig.css';
 
 const API_KEY_INPUT_ID = 'api-key-input-id';
 const API_KEY_PROP_NAME = 'apiKey';
@@ -54,8 +55,9 @@ class AppConfig extends Component {
     const { appConfig } = this.props;
     return (
       <div className="app-config">
-        <h1>App Config</h1>
-        <Button color="primary" onClick={this.toggleCollapse}>Show</Button>
+        <Button className="toggle-button" color="primary" onClick={this.toggleCollapse}>
+          {this.state.collapse ? 'Hide app config' : 'Show app config'}
+        </Button>
         <Collapse isOpen={this.state.collapse}>
           <Form onSubmit={this.cancelSubmit}>
             <FormGroup>
@@ -64,7 +66,7 @@ class AppConfig extends Component {
               <FormText color="muted">
                 This app uses fixer.io api and thus requires fixer.io API key.
                 You can use default, but if the monthly request limit is exceeded,
-                you can create your own free fixer.io account and provide own API key.
+                you can create your own free fixer.io account and provide your own API key.
               </FormText>
             </FormGroup>
             <Button color="primary" onClick={this.props.restoreDefaultAppConfig}>Restore default</Button>

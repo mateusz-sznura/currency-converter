@@ -109,20 +109,37 @@ class App extends Component {
     const { appConfig, appState } = this.state;
     return (
       <div className="app">
-        <AppConfig 
-          appConfig={appConfig}
-          setAppConfig={this.setAppConfig}
-          restoreDefaultAppConfig={this.restoreDefaultAppConfig}
-        />
-        <CurrencyConverter
-          appConfig={appConfig}
-          appState={appState}
-          setAppState={this.setAppState}
-          availableCurrencies={this.state.availableCurrencies}
-        />
+        <AppHeader />
+        <div className="app-body">
+          <CurrencyConverter
+            appConfig={appConfig}
+            appState={appState}
+            setAppState={this.setAppState}
+            availableCurrencies={this.state.availableCurrencies}
+          />
+          <AppConfig 
+            appConfig={appConfig}
+            setAppConfig={this.setAppConfig}
+            restoreDefaultAppConfig={this.restoreDefaultAppConfig}
+          />
+        </div>
+        <AppFooter />
       </div>
     );
   }
 }
+
+const AppHeader = () => (
+  <div className="app-header">
+    <h1>Currency Converter</h1>
+    <h2>Convert and compare currencies</h2>
+  </div>
+);
+
+const AppFooter = () => (
+  <div className="app-footer">
+    <p>by Mateusz Sznura</p>
+  </div>
+);
 
 export default App;

@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Button } from 'reactstrap';
+import './AddNewDate.css'
 
-class AddNewDate extends Component {
-
-  render() {
-    return (
-      <div className="add-new-date" onClick={this.props.addNewDate}>
-        {'+'}
-      </div>
-    );
-  }
-
-}
+const AddNewDate = ({ addNewDate }) => (
+  <Button className="add-new-date" onClick={addNewDate}>
+    {'+'}
+  </Button>
+);
 
 export default AddNewDate;
