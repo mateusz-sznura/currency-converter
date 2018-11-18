@@ -50,15 +50,10 @@ class App extends Component {
     this.restoreDefaultAppConfig = this.restoreDefaultAppConfig.bind(this);
     this.setAppState = this.setAppState.bind(this);
     this.getExchangeRates = this.getExchangeRates.bind(this);
-    // this.getCurrencyCodes = this.getCurrencyCodes.bind(this);
   }
 
   componentDidMount() {
     getCurrencyCodes({ apiKey: this.state.appConfig.apiKey }).then(availableCurrencies => {
-      // this.setState(state => ({
-      //   ...state.appState,
-      //   availableCurrencies,
-      // }));
       this.setState({
         availableCurrencies,
       });
