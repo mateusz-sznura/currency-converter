@@ -9,11 +9,13 @@
 
 .currency-value-matrix td:first-child {
     width: 180px;
+    border-right: 1px solid #cccccc; 
 }
 
 .currency-value-matrix td.td-instruction {
     background-color: #efefef;
     border-bottom: 1px solid #cccccc; 
+    border-right: 1px solid #cccccc; 
 }
 
 .currency-value-matrix td.td-input {
